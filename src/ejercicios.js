@@ -1,9 +1,9 @@
 // ============================================
 // EDITOR DE IMÁGENES CON ÁLGEBRA MATRICIAL
 // ============================================
-// Nombre del estudiante: _________________
-// Fecha: _________________
-// Grupo: _________________
+// Nombre del estudiante: Venus Getsemaní Semino Alemán
+// Fecha: 17/11/2025
+// Grupo: 1B
 
 const { PNG } = require('pngjs');
 const fs = require('fs');
