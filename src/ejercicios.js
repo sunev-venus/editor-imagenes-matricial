@@ -227,7 +227,7 @@ function obtenerDimensionesImagen(rutaImagen) {
  * const oscuro = ajustarBrillo(matriz, 0.5);    // 50% más oscuro
  */
 function ajustarBrillo(matriz, factor) {
-  // Crear copia profunda de la matriz original
+  // Crear copia profunda de la matriz original 
   const resultado = matriz.map((fila) =>
     fila.map((pixel) => ({ // itera sobre cada p+ixel dentro de la fila actual
       // Ajuste de brillo
@@ -334,13 +334,25 @@ function convertirEscalaGrises(matriz) {
  * @example
  * const espejo = voltearHorizontal(matriz);
  */
-function voltearHorizontal(matriz) {
-  // TODO: Implementar volteo horizontal
+function voltearHorizontal_Manual(matriz) {
+  const filas = matriz.length;
+  if (filas === 0) return [];
+  const columnas = matriz[0].length;
+  const resultado = []; // nueva matriz para almacenar el resultado
+
+  for (let i = 0; i < filas; i++) { // Itera sobre cada fila
+    resultado[i] = []; // Inicializa la nueva fila
+    for (let j = 0; j < columnas; j++) { // Itera sobre cada columna
+      // Asigna el píxel de la posición (i, j) de la original a la posición de la nueva.
+      const pixelOriginal = matriz[i][j]; 
+      // La posición de destino es la posición simétrica en el espejo
+      const nuevaPosicion = columnas - 1 - j; 
+      // Copia el píxel a la posición invertida de la fila actual
+      resultado[i][nuevaPosicion] = { ...pixelOriginal }; 
+    }
+  }
   
-  // Pista: Puedes usar .reverse() en cada fila
-  // o construir manualmente invirtiendo el orden
-  
-  return []; // REEMPLAZAR
+  return resultado; // Devuelve la matriz volteada
 }
 
 /**
