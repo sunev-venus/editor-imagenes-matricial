@@ -370,10 +370,17 @@ function voltearHorizontal_Manual(matriz) {
  * @example
  * const invertido = voltearVertical(matriz);
  */
+/**
+ * Ejercicio 3.2: Voltear vertical (10 puntos)
+ * * Voltea la imagen verticalmente (de arriba hacia abajo).
+ * * @param {Array<Array<Object>>} matriz - Matriz de píxeles
+ * @returns {Array<Array<Object>>} - Matriz volteada verticalmente
+ */
 function voltearVertical(matriz) {
-  // TODO: Implementar volteo vertical
-  
-  return []; // REEMPLAZAR
+  // Crear una copia superficial de la matriz
+  const resultado = [...matriz]; // Copia la matriz (array de filas)
+  resultado.reverse(); // Invierte el orden de las filas
+  return resultado; // Devuelve la matriz volteada
 }
 
 /**
