@@ -416,21 +416,35 @@ function rotar90Grados(matriz) {
  * const mezcla = mezclarImagenes(imagen1, imagen2, 0.5); // 50/50
  */
 function mezclarImagenes(matriz1, matriz2, factor) {
-  // TODO: Implementar mezcla de imágenes
-  
-  // 1. Verificar que tengan las mismas dimensiones
-  // const dims1 = obtenerDimensiones(matriz1);
-  // const dims2 = obtenerDimensiones(matriz2);
-  // if (dims1.filas !== dims2.filas || dims1.columnas !== dims2.columnas) {
-  //   throw new Error('Las imágenes deben tener el mismo tamaño');
-  // }
-  
-  // 2. Para cada pixel:
-  // r = r1 * (1 - factor) + r2 * factor
-  // g = g1 * (1 - factor) + g2 * factor
-  // b = b1 * (1 - factor) + b2 * factor
-  
-  return []; // REEMPLAZAR
+
+  // Verificar que tengan las mismas dimensiones
+  const dims1 = obtenerDimensiones(matriz1); // Obtiene dimensiones de la primera imagen
+  const dims2 = obtenerDimensiones(matriz2); // Obtiene dimensiones de la segunda imagen
+
+  if (dims1.filas !== dims2.filas || dims1.columnas !== dims2.columnas) {
+    throw new Error('Las imágenes deben tener el mismo tamaño'); // Lanza error si las dimensiones no coinciden
+  }
+
+  const resultado = copiarMatriz(matriz1); // Crea una copia de la matriz 1 para el resultado
+
+  for (let i = 0; i < resultado.length; i++) { // Itera sobre las filas (altura)
+    for (let j = 0; j < resultado[i].length; j++) { // Itera sobre las columnas (ancho)
+      // Aplica mezcla ponderada (alpha blending) para el canal Rojo
+      resultado[i][j].r = limitarValorColor(
+        matriz1[i][j].r * (1 - factor) + matriz2[i][j].r * factor
+      );
+      // Aplica mezcla ponderada para el canal Verde
+      resultado[i][j].g = limitarValorColor(
+        matriz1[i][j].g * (1 - factor) + matriz2[i][j].g * factor
+      );
+      // Aplica mezcla ponderada para el canal Azul
+      resultado[i][j].b = limitarValorColor(
+        matriz1[i][j].b * (1 - factor) + matriz2[i][j].b * factor
+      );
+    }
+  }
+
+  return resultado;
 }
 
 /**
