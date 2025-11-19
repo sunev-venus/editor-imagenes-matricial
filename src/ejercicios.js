@@ -227,19 +227,20 @@ function ajustarBrillo(matriz, factor) {
   // TODO: Implementar ajuste de brillo
   
   // 1. Crear matriz resultado
-  // const resultado = copiarMatriz(matriz);
+  const resultado = copiarMatriz(matriz);
   
   // 2. Para cada pixel, multiplicar R, G, B por el factor
-  // for (let i = 0; i < resultado.length; i++) {
-  //   for (let j = 0; j < resultado[i].length; j++) {
-  //     resultado[i][j].r = limitarValorColor(matriz[i][j].r * factor);
-  //     resultado[i][j].g = limitarValorColor(matriz[i][j].g * factor);
-  //     resultado[i][j].b = limitarValorColor(matriz[i][j].b * factor);
-  //     // El canal alpha NO se modifica
-  //   }
-  // }
+  for (let i = 0; i < resultado.length; i++) {
+    for (let j = 0; j < resultado[i].length; j++) {
+      // Multiplicar cada canal por el factor y limitar al rango 0-255
+      resultado[i][j].r = limitarValorColor(matriz[i][j].r * factor);
+      resultado[i][j].g = limitarValorColor(matriz[i][j].g * factor);
+      resultado[i][j].b = limitarValorColor(matriz[i][j].b * factor);
+      // El canal alpha NO se modifica (mantiene transparencia original)
+    }
+  }
   
-  return []; // REEMPLAZAR
+  return resultado; // REEMPLAZAR
 }
 
 /**
