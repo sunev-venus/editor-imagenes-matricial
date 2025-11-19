@@ -402,14 +402,37 @@ function voltearVertical(matriz) {
  * @example
  * const rotada = rotar90Grados(matriz);
  */
+/**
+ * Ejercicio 3.3: Rotar 90 grados en sentido horario (10 puntos)
+ * * Rota la imagen 90° en sentido horario.
+ * * @param {Array<Array<Object>>} matriz - Matriz de píxeles
+ * @returns {Array<Array<Object>>} - Matriz rotada 90°
+ */
 function rotar90Grados(matriz) {
-  // TODO: Implementar rotación de 90 grados
-  
-  // Opción 1: Hacer transpuesta manualmente considerando que son objetos
-  // Opción 2: Construir directamente la matriz rotada
-  //   nuevoPixel[j][alto - 1 - i] = pixelOriginal[i][j]
-  
-  return []; // REEMPLAZAR
+  // Obtiene las dimensiones de la matriz original
+  const alto = matriz.length; // Alto original (número de filas)
+  if (alto === 0) return []; // Retorna vacío si la matriz está vacía
+  const ancho = matriz[0].length; // Ancho original (número de columnas)
+  const nuevoAlto = ancho; // El nuevo alto es el ancho original
+  const nuevoAncho = alto; // El nuevo ancho es el alto original
+  // Crear la matriz resultado vacía
+  const resultado = []; // Inicializa la matriz rotada
+  // Inicializa las filas de la matriz resultado
+  for (let i = 0; i < nuevoAlto; i++) {
+    resultado[i] = new Array(nuevoAncho); // Crea un array de 'nuevoAncho' píxeles por fila
+  }
+  // Llenar la matriz rotada
+  for (let i = 0; i < alto; i++) { // Recorre las filas de la matriz original (i)
+    for (let j = 0; j < ancho; j++) { // Recorre las columnas de la matriz original (j)
+      const pixelOriginal = matriz[i][j]; // Píxel original en (i, j)
+      // Calcula la nueva posición para la rotación de 90° en sentido horario:
+      const nuevaFila = j;
+      const nuevaColumna = alto - 1 - i;
+      resultado[nuevaFila][nuevaColumna] = { ...pixelOriginal }; // Asigna el píxel (copia para seguridad)
+    }
+  }
+
+  return resultado; // Devuelve la matriz rotada
 }
 
 // ============================================
