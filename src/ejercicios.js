@@ -103,41 +103,37 @@ function imagenAMatriz(rutaImagen) {
  * matrizAImagen(matriz, 'imagenes/salida/copia.png');
  */
 function matrizAImagen(matriz, rutaSalida) {
-  // TODO: Implementar la conversión de matriz a PNG
-  
-  // 1. Validar la matriz
-  // validarMatriz(matriz);
+  // Validar la matriz
+  validarMatriz(matriz);
   
   // 2. Obtener dimensiones
-  // const dims = obtenerDimensiones(matriz);
+  const dims = obtenerDimensiones(matriz); // la funcipon devuelve un objeto
   
-  // 3. Crear el PNG
-  // const png = new PNG({
-  //   width: dims.columnas,
-  //   height: dims.filas
-  // });
+  // Crear un objeto PNG vacío en la memoria
+  const png = new PNG({
+    width: dims.columnas,
+    height: dims.filas
+  });
   
-  // 4. Llenar png.data
-  // for (let y = 0; y < dims.filas; y++) {
-  //   for (let x = 0; x < dims.columnas; x++) {
-  //     const idx = (dims.columnas * y + x) << 2;
-  //     const pixel = matriz[y][x];
-  //     
-  //     png.data[idx] = limitarValorColor(pixel.r);
-  //     png.data[idx + 1] = limitarValorColor(pixel.g);
-  //     png.data[idx + 2] = limitarValorColor(pixel.b);
-  //     png.data[idx + 3] = limitarValorColor(pixel.a);
-  //   }
-  // }
+  // Llenar png.data
+  for (let y = 0; y < dims.filas; y++) { // recorrer las filas
+    for (let x = 0; x < dims.columnas; x++) { // en cada fila, recorremos cada columna
+      const idx = (dims.columnas * y + x) << 2; // (ancho * y + x) *4
+      const pixel = matriz[y][x]; // se obtiene el objeto pixel de la matriz de entrada
+      // Se asignan los valores de colores al array
+      png.data[idx] = limitarValorColor(pixel.r); // rojo
+      png.data[idx + 1] = limitarValorColor(pixel.g); // verde 
+      png.data[idx + 2] = limitarValorColor(pixel.b); // azul
+      png.data[idx + 3] = limitarValorColor(pixel.a); // alfa (transparencia)
+    }
+  }
   
-  // 5. Asegurar que existe el directorio de salida
-  // asegurarDirectorio(path.dirname(rutaSalida));
+  // Asegurar que existe el directorio de salida
+  asegurarDirectorio(path.dirname(rutaSalida));
   
-  // 6. Guardar el archivo
-  // const buffer = PNG.sync.write(png);
-  // fs.writeFileSync(rutaSalida, buffer);
-  
-  // ESCRIBE TU CÓDIGO AQUÍ
+  // Guardar el archivo
+  const buffer = PNG.sync.write(png); // convierte el objero PNG en memoria a un buffer
+  fs.writeFileSync(rutaSalida, buffer); // escribe ese bufffer en un archivo en el disco duro
 }
 
 /**
