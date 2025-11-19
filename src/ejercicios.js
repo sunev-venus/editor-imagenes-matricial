@@ -1,9 +1,9 @@
 // ============================================
 // EDITOR DE IMÁGENES CON ÁLGEBRA MATRICIAL
 // ============================================
-// Nombre del estudiante: _________________
-// Fecha: _________________
-// Grupo: _________________
+// Nombre del estudiante: Juan José Zapata Buenfil
+// Fecha: 18/11/2025
+// Grupo: 1B
 
 const { PNG } = require('pngjs');
 const fs = require('fs');
@@ -56,39 +56,32 @@ const {
  * // matriz[0][0] = {r: 0, g: 0, b: 128, a: 255}
  */
 function imagenAMatriz(rutaImagen) {
-  // TODO: Implementar la conversión de PNG a matriz
+  // Leer el archivo PNG
+  const buffer = fs.readFileSync(rutaImagen); //Se lee el archivo PNG
+  const png = PNG.sync.read(buffer); // Se usa para decoidficar el buffer del PNG
   
-  // 1. Leer el archivo PNG
-  // const buffer = fs.readFileSync(rutaImagen);
-  // const png = PNG.sync.read(buffer);
+  // Crear la matriz vacía que contiene todas la filas
+  const matriz = [];
   
-  // 2. Crear la matriz vacía
-  // const matriz = [];
-  
-  // 3. Recorrer cada fila (y) y cada columna (x)
-  // for (let y = 0; y < png.height; y++) {
-  //   const fila = [];
-  //   for (let x = 0; x < png.width; x++) {
-  //     // 4. Calcular el índice en el buffer
-  //     const idx = (png.width * y + x) << 2; // equivalente a * 4
-  //     
-  //     // 5. Extraer los valores RGBA
-  //     const pixel = {
-  //       r: png.data[idx],
-  //       g: png.data[idx + 1],
-  //       b: png.data[idx + 2],
-  //       a: png.data[idx + 3]
-  //     };
-  //     
-  //     fila.push(pixel);
-  //   }
-  //   matriz.push(fila);
-  // }
-  
-  // 6. Retornar la matriz
-  // return matriz;
-  
-  return []; // REEMPLAZAR CON TU CÓDIGO
+  // Recorrer cada fila (y) y cada columna (x)
+  for (let y = 0; y < png.height; y++) { // El bluce exterior itera sobre la altura (filas)
+    const fila = [];
+      for (let x = 0; x < png.width; x++) { // El bluce intrerior itera sobre la anchura (columnas)
+
+  //  Calcular el índice en el buffer 'png.data' es plano
+        const idx = (png.width * y + x) << 2; // equivalente a * 4
+
+        const pixel = {// Extraer los valores RGBA y crear el objeto píxel
+         r: png.data[idx], // rojo
+        g: png.data[idx + 1], // verde
+        b: png.data[idx + 2], // azul
+        a: png.data[idx + 3] // alfa (transparencia)
+      };  
+      fila.push(pixel); // Añadimos el píxel (objeto) a la fila actual
+    }
+    matriz.push(fila); // Añadimos la fila completa (array de píxeles) a la matriz principal
+  }
+  return matriz; // Retornar matriz
 }
 
 /**
