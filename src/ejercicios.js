@@ -1,7 +1,7 @@
 // ============================================
 // EDITOR DE IMÁGENES CON ÁLGEBRA MATRICIAL
 // ============================================
-// Nombre del estudiante: VEnus Semino
+// Nombre del estudiante: VEnus Semino Alemán
 // Fecha: 18/11/2025
 // Grupo: 1B
 
