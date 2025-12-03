@@ -1,7 +1,7 @@
 // ============================================
 // EDITOR DE IMÁGENES CON ÁLGEBRA MATRICIAL
 // ============================================
-// Nombre del estudiante: Juan José Zapata Buenfil
+// Nombre del estudiante: VEnus Semino
 // Fecha: 18/11/2025
 // Grupo: 1B
 
